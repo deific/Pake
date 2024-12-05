@@ -10,6 +10,7 @@ console.log('\n=======================\n');
 console.log('Pake parameters is: ');
 console.log('url: ', process.env.URL);
 console.log('name: ', process.env.NAME);
+console.log('title: ', process.env.TITLE);
 console.log('icon: ', process.env.ICON);
 console.log('height: ', process.env.HEIGHT);
 console.log('width: ', process.env.WIDTH);
@@ -21,7 +22,7 @@ console.log('safe-domain: ', process.env.SAFE_DOMAIN);
 console.log('===========================\n');
 
 cd('node_modules/pake-cli');
-let params = `node cli.js ${process.env.URL} --name ${process.env.NAME} --height ${process.env.HEIGHT} --width ${process.env.WIDTH}`;
+let params = `node cli.js ${process.env.URL} --name ${process.env.TITLE} --height ${process.env.HEIGHT} --width ${process.env.WIDTH}`;
 
 if (process.env.HIDE_TITLE_BAR === 'true') {
   params = `${params} --hide-title-bar`;
