@@ -1,7 +1,7 @@
 {
   "windows": [
     {
-      "url": "https://weread.qq.com",
+      "url": "http://192.168.3.49:8000",
       "url_type": "web",
       "hide_title_bar": true,
       "fullscreen": false,

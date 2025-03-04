@@ -5,6 +5,7 @@ use std::str::FromStr;
 use tauri::http::Method;
 use tauri::{command, AppHandle, Manager, Url, WebviewWindow};
 use tauri_plugin_http::reqwest::{ClientBuilder, Request};
+use crate::app::window::new_window;
 
 #[derive(serde::Deserialize)]
 pub struct DownloadFileParams {
@@ -89,5 +90,11 @@ pub fn send_notification(app: AppHandle, params: NotificationParams) -> Result<(
         .icon(&params.icon)
         .show()
         .unwrap();
+    Ok(())
+}
+
+#[command]
+pub fn open_new_window(app: tauri::AppHandle)  -> Result<(), String> {
+    new_window(app);
     Ok(())
 }

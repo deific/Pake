@@ -1,4 +1,4 @@
-use crate::app::config::PakeConfig;
+use crate::app::config::{PakeConfig, WindowConfig};
 use crate::util::get_data_dir;
 use std::{path::PathBuf, str::FromStr};
 use tauri::{App, Config, Url, WebviewUrl, WebviewWindow, WebviewWindowBuilder};
@@ -60,14 +60,38 @@ pub fn set_window(app: &mut App, config: &PakeConfig, tauri_config: &Config) -> 
         if window_config.dark_mode {
             window_builder = window_builder.theme(Some(Theme::Dark));
         }
-    }
 
-    #[cfg(not(target_os = "macos"))]
-    {
         window_builder = window_builder
             .data_directory(_data_dir)
             .title(app.package_info().name.clone());
     }
 
     window_builder.build().expect("Failed to build window")
+}
+
+pub fn new_window(app: tauri::AppHandle)  -> WebviewWindow {
+    let js_script="document.cookie='tpass_se8dc9bba4s9466a93bb2qaab2b8c9ca=eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjEyMDExYmUyMWRlYzQ5NTU5NmM0MDM3ZDU4ZTYwYmE2In0.ijARVehgaHpxTTNT7kiuAizjU7CRvzWjW0jzqJl_4SIEm0-QK01d9CDdq_HX4ja3Bn7-7V8WxcVtDYH_iUarOA;path=/; domain=.chinatax.gov.cn;'";
+    let webview = tauri::WebviewUrl::External("https://etax.beijing.chinatax.gov.cn:8443/loginb/".parse().unwrap());
+
+    // let js_script="document.cookie='tpass_ue7c9954acea492784ac6g78939gc2e9=eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjFiOTY1MTlmOTY2YTQ3ZDU4MDRmMTBhY2U2NDdiZjE5In0.CFJqs-Hu5eU-Wl2VT_FSSNKOKRPlvc6tJGn1Oh0uX3I2T_wHDHDUlD7R5KIrCM546woLXYgUwsm76F4n4RiDKw; MM_mq4qQammP3BA3=N2FhNWVmOTU4ZDIyMzJmMPM6Qm6eao4OhbeTXMxzzFm+3JEWpTECFqrLYCxZKpv8JjdtnFhatxaaY+WdS/V9Vw; R8z1ETxCbJcfKium=621638dce93946409be65aee40b9d333; R8z1ETxCbJcfKiun=2e144be259c9ef43a7a5a3a77c078807;path=/; domain=.chinatax.gov.cn;'";
+    // let webview = tauri::WebviewUrl::External(
+    //     "https://etax.hunan.chinatax.gov.cn:8443/loginb/"
+    //         .parse()
+    //         .unwrap(),
+    // );
+
+    // let webview = tauri::WebviewUrl::App("tax.html".parse().unwrap());
+    let window_builder = WebviewWindowBuilder::new(&app, "sub", webview)
+        .content_protected(true)
+        .maximized(true)
+        .initialization_script(js_script)
+        .initialization_script(include_str!("../inject/component.js"))
+        .initialization_script(include_str!("../inject/event.js"))
+        .initialization_script(include_str!("../inject/style.js"))
+        .initialization_script(include_str!("../inject/custom.js"))
+        .use_https_scheme(true)
+        .focused(true);
+
+    window_builder.build()
+        .expect("Failed to build new window")
 }

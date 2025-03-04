@@ -295,6 +295,7 @@ function setDefaultZoom() {
 }
 
 function getFilenameFromUrl(url) {
+  console.log("url=====>{}", url)
   const urlPath = new URL(url).pathname;
   return urlPath.substring(urlPath.lastIndexOf('/') + 1);
 }

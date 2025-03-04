@@ -8,6 +8,9 @@
       "iconPath": "png/weread_512.png",
       "iconAsTemplate": false,
       "id": "pake-tray"
+    },
+    "security": {
+      "csp": "default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval';"
     }
   },
   "build": {
