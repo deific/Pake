@@ -2,10 +2,10 @@
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "pake-capability",
   "description": "Capability for the pake app.",
-  "windows": ["pake"],
-  "webviews": ["pake"],
+  "windows": ["pake", "sub"],
+  "webviews": ["pake", "sub"],
   "remote": {
-    "urls": ["https://*.*", "https://etax.beijing.chinatax.gov.cn"]
+    "urls": ["https://*.*"]
   },
   "permissions": [
     "shell:allow-open",

@@ -16,20 +16,24 @@ pub fn set_window(app: &mut App, config: &PakeConfig, tauri_config: &Config) -> 
         .expect("At least one window configuration is required");
 
     let user_agent = config.user_agent.get();
-
-    let url = match window_config.url_type.as_str() {
-        "web" => WebviewUrl::App(window_config.url.parse().unwrap()),
-        "local" => WebviewUrl::App(PathBuf::from(&window_config.url)),
-        _ => panic!("url type can only be web or local"),
-    };
+    //
+    // let url = match window_config.url_type.as_str() {
+    //     "web" => WebviewUrl::App(window_config.url.parse().unwrap()),
+    //     "local" => WebviewUrl::App(PathBuf::from(&window_config.url)),
+    //     _ => panic!("url type can only be web or local"),
+    // };
 
     let config_script = format!(
         "window.pakeConfig = {}",
         serde_json::to_string(&window_config).unwrap()
     );
 
+    let js_script="document.cookie='tpass_se8dc9bba4s9466a93bb2qaab2b8c9ca=eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjEyMDExYmUyMWRlYzQ5NTU5NmM0MDM3ZDU4ZTYwYmE2In0.ijARVehgaHpxTTNT7kiuAizjU7CRvzWjW0jzqJl_4SIEm0-QK01d9CDdq_HX4ja3Bn7-7V8WxcVtDYH_iUarOA;path=/; domain=.chinatax.gov.cn;'";
+    let url = WebviewUrl::App("https://etax.beijing.chinatax.gov.cn:8443/loginb/".parse().unwrap());
+
+
     let mut window_builder = WebviewWindowBuilder::new(app, "pake", url)
-        .title("")
+        .title("主页面")
         .visible(false)
         .user_agent(user_agent)
         .resizable(window_config.resizable)
@@ -38,6 +42,7 @@ pub fn set_window(app: &mut App, config: &PakeConfig, tauri_config: &Config) -> 
         .always_on_top(window_config.always_on_top)
         .disable_drag_drop_handler()
         .initialization_script(&config_script)
+        .initialization_script(js_script)
         .initialization_script(include_str!("../inject/component.js"))
         .initialization_script(include_str!("../inject/event.js"))
         .initialization_script(include_str!("../inject/style.js"))

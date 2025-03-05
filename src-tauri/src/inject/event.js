@@ -189,6 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const detectAnchorElementClick = e => {
     const anchorElement = e.target.closest('a');
 
+    console.log("-=============> anchorElement", anchorElement)
     if (anchorElement && anchorElement.href) {
       const target = anchorElement.target;
       const hrefUrl = new URL(anchorElement.href);

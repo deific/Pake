@@ -10,7 +10,7 @@
       "id": "pake-tray"
     },
     "security": {
-      "csp": "default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval';"
+      "csp": "default-src 'self'; connect-src 'self' https://etax.beijing.chinatax.gov.cn:8443"
     }
   },
   "build": {
