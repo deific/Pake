@@ -1,0 +1,25 @@
+{
+  "version": "0.9.0",
+  "notes": "1、修复了一些已知问题",
+  "pub_date": "",
+  "platforms": {
+    "linux-x86_64": {
+      "signature": "",
+      "url": ""
+    },
+    "windows-x86_64": {
+      "signature": "",
+      "url": ""
+    },
+    "darwin-x86_64": {
+      "signature": "",
+      "url": ""
+    },
+    "darwin-aarch64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTUVM4Z0JVMEh5U3hzMjRjcUNQb3U4Q3MzZ0xEWUo1ejhpM0svdHRFZS9aNU1FOStDRW9qVnVlNUxJSlRVSjc2NWJrRFFCbGpUajVZYjZTZ0M0bEwzMkxZU2tOcXdja0FnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzQxMzM0MDEzCWZpbGU6V2VSZWFkLmFwcC50YXIuZ3oKK0pGMmo1RXhOSG5kd0hGd21XbEdIc0RkT2pHampGdVpsMEpNU2lIbGFuVkJXM3hNV1l0NjBZaGhQZVlaTUtIbjQwNWltMkNXa2szWG5BMExRQ3pOQ2c9PQo=",
+      "url": "https://lolr.obs.cn-north-4.myhuaweicloud.com/desktop/WeRead.app.tar.gz"
+    }
+  }
+}
+
+
